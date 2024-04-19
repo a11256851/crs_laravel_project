@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\CustomerAccountModel;
 use App\Models\StoreAccountModel;
 use Symfony\Component\HttpFoundation\Response;
+use Illuminate\Support\Facades\Hash;
+
 class registerController extends Controller
 {
     //
@@ -15,10 +17,9 @@ class registerController extends Controller
             $request->validate([
                 'account' => 'required',
                 'password'=>'required|min:6|max:20|regex:/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/',
-                'name',
-                'phone',
+                'name'=>'required',
+                'phone'=>'required',
                 'email'=>'email|unique:users',
-
                 'birthday',
                 'gender',
             ]);
@@ -29,7 +30,7 @@ class registerController extends Controller
         }
 
             $account = $request->input('account');
-            $password = $request->input('password');
+            $password =Hash::make($request->input('password'));
             $name = $request->input('name');
             $phone = $request->input('phone');
             $email = $request->input('email');
