@@ -9,6 +9,12 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:sanctum');
 
 Route::post('/register',[registerController::class,'register']);
-Route::post('/login',[log_in_out_Controller::class,'log_in'])->middleware('api');
-Route::post('/logout',[log_in_out_Controller::class,'log_out']);
+Route::post('/login',[log_in_out_Controller::class,'log_in']);
+//Route::post('/logout',[log_in_out_Controller::class,'log_out']);
 Route::post('/logcheck',[log_in_out_Controller::class,'logcheck']);
+//getUserData
+Route::post('/getUserData',[log_in_out_Controller::class,'getUserData']);
+Route::group(['middleware'=>'auth:sanctum'],function(){
+    Route::post('/logout',[log_in_out_Controller::class,'log_out']);
+    Route::post('/getUserData',[log_in_out_Controller::class,'getUserData']);
+});

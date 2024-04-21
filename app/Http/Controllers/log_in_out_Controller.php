@@ -28,8 +28,10 @@ class log_in_out_Controller extends Controller
             $storeUser = StoreAccountModel::where('account', $account)->first();
 
             if ($storeUser && password_verify($password, $storeUser->password)) {
-                Auth::login($storeUser);
-                return response()->json(['message' => '登入成功'], Response::HTTP_OK);
+                //Auth::login($storeUser);
+                $token = $storeUser->createToken('auth_token')->plainTextToken;
+                return response()->json(['token' => $token, 'message' => '登入成功'], Response::HTTP_OK);
+               // return response()->json(['message' => '登入成功'], Response::HTTP_OK);
             }else{
                 return response()->json(['message' => '登入失敗'], Response::HTTP_UNAUTHORIZED);
             }
@@ -38,8 +40,10 @@ class log_in_out_Controller extends Controller
             $customerUser = CustomerAccountModel::where('account', $account)->first();
             // 確認使用者存在並且密碼正確
             if ($customerUser && password_verify($password, $customerUser->password)) {
-                Auth::login($customerUser);
-                return response()->json(['message' => '登入成功'], Response::HTTP_OK);
+               // Auth::login($customerUser);
+                $token = $customerUser->createToken('auth_token')->plainTextToken;
+                return response()->json(['token' => $token, 'message' => '登入成功'], Response::HTTP_OK);
+               // return response()->json(['message' => '登入成功'], Response::HTTP_OK);
             }else{
                 return response()->json(['message' => '登入失敗'], Response::HTTP_UNAUTHORIZED);
             }
@@ -56,8 +60,9 @@ class log_in_out_Controller extends Controller
 
     }
     
-    public function log_out(){
-        Auth::logout();
+    public function log_out(Request $request){
+        $request->user()->currentAccessToken()->delete();
+        //Auth::logout();
         return response()->json(['message' => '登出成功'], Response::HTTP_OK);
     }
 
@@ -68,6 +73,19 @@ class log_in_out_Controller extends Controller
         } else {
             // 如果用戶沒有登入
             return response()->json(['message' => '尚未登入'], Response::HTTP_UNAUTHORIZED);
+        }
+    }
+   public function getUserData(Request $request)
+    {
+        if (Auth::check()) {
+            
+            $user = Auth::user();
+          
+            return response()->json(['user' => $user], Response::HTTP_OK);
+           
+        } else {
+            // 用户未通过身份验证，返回适当的响应
+            return response()->json(['message' => 'User is not authenticated'], Response::HTTP_UNAUTHORIZED);
         }
     }
 }
