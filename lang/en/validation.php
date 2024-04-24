@@ -48,7 +48,8 @@ return [
     'distinct' => 'The :attribute field has a duplicate value.',
     'doesnt_end_with' => 'The :attribute field must not end with one of the following: :values.',
     'doesnt_start_with' => 'The :attribute field must not start with one of the following: :values.',
-    'email' => 'The :attribute field must be a valid email address.',
+    'email' => 'Error_Email_Format',//The :attribute field must be a valid email address.
+    //Email格式錯誤
     'ends_with' => 'The :attribute field must end with one of the following: :values.',
     'enum' => 'The selected :attribute is invalid.',
     'exists' => 'The selected :attribute is invalid.',
@@ -92,19 +93,27 @@ return [
     ],
     'mac_address' => 'The :attribute field must be a valid MAC address.',
     'max' => [
-        'array' => 'The :attribute field must not have more than :max items.',
-        'file' => 'The :attribute field must not be greater than :max kilobytes.',
-        'numeric' => 'The :attribute field must not be greater than :max.',
-        'string' => 'The :attribute field must not be greater than :max characters.',
+        'array' => 'Error_array_exceed_max',//The :attribute field must not have more than :max items.
+
+        'file' => 'Error_file_exceed_max',//The :attribute field must not be greater than :max kilobytes.
+
+        'numeric' => 'Error_numeric_exceed_max',//The :attribute field must not be greater than :max.
+
+        'string' => 'Error_string_exceed_max',//The :attribute field must not be greater than :max characters.
+
     ],
     'max_digits' => 'The :attribute field must not have more than :max digits.',
     'mimes' => 'The :attribute field must be a file of type: :values.',
     'mimetypes' => 'The :attribute field must be a file of type: :values.',
     'min' => [
-        'array' => 'The :attribute field must have at least :min items.',
-        'file' => 'The :attribute field must be at least :min kilobytes.',
-        'numeric' => 'The :attribute field must be at least :min.',
-        'string' => 'The :attribute field must be at least :min characters.',
+        'array' => 'Error_array_low_min',//The :attribute field must have at least :min items.
+
+        'file' => 'Error_file_low_min',//The :attribute field must be at least :min kilobytes.
+
+        'numeric' => 'Error_numeric_low_min',//The :attribute field must be at least :min.
+
+        'string' => 'Error_string_low_min',//The :attribute field must be at least :min characters.
+        
     ],
     'min_digits' => 'The :attribute field must have at least :min digits.',
     'missing' => 'The :attribute field must be missing.',
@@ -132,8 +141,10 @@ return [
     'prohibited_if' => 'The :attribute field is prohibited when :other is :value.',
     'prohibited_unless' => 'The :attribute field is prohibited unless :other is in :values.',
     'prohibits' => 'The :attribute field prohibits :other from being present.',
-    'regex' => 'The :attribute field format is invalid.',
-    'required' => 'The :attribute field is required.',
+    'regex' => 'Error_field_format ',//The :attribute field format is invalid.
+    //欄位格式錯誤
+    'required' => 'Error_required ',//The :attribute field is required.
+    //欄位為空
     'required_array_keys' => 'The :attribute field must contain entries for: :values.',
     'required_if' => 'The :attribute field is required when :other is :value.',
     'required_if_accepted' => 'The :attribute field is required when :other is accepted.',
@@ -152,7 +163,8 @@ return [
     'starts_with' => 'The :attribute field must start with one of the following: :values.',
     'string' => 'The :attribute field must be a string.',
     'timezone' => 'The :attribute field must be a valid timezone.',
-    'unique' => 'The :attribute has already been taken.',
+    'unique' => 'Error_data_exist',//The :attribute has already been taken.
+
     'uploaded' => 'The :attribute failed to upload.',
     'uppercase' => 'The :attribute field must be uppercase.',
     'url' => 'The :attribute field must be a valid URL.',

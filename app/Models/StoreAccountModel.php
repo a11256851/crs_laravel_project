@@ -25,7 +25,7 @@ class StoreAccountModel extends Model implements AuthenticatableContract
         'email',
     ];
     
-    public function getAuthIdentifierName()
+    /*public function getAuthIdentifierName()
     {
         return $this->primaryKey;
     }
@@ -36,5 +36,5 @@ class StoreAccountModel extends Model implements AuthenticatableContract
     public function getAuthPassword()
     {
         return $this->password;
-    }
+    }*/
 }

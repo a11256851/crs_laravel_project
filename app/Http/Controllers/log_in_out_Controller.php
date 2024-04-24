@@ -21,6 +21,7 @@ class log_in_out_Controller extends Controller
         }catch(\Illuminate\Validation\ValidationException $e){
             return response()->json(['errors' => $e->errors()], 422);
         } 
+        
         $account=$request->account;
         $password=$request->password;
         $AccountPassword=$request->only('account','password');
